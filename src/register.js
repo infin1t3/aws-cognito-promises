@@ -11,6 +11,12 @@ export default function(email, password) {
       Value: email
     })
   ]
+
+  attributeList.push(new CognitoUserAttribute({
+    Name: 'name',
+    Value: Math.random().toString()
+  }));
+
   return new Promise((resolve, reject) => {
     userPool.signUp(email, password, attributeList, null, (err, result) => {
       if (err) {
